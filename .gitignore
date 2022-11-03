@@ -1,0 +1,15 @@
+# outputs内のmp3ファイル
+outputs/*.mp3
+
+# envファイル
+.env
+.envrc
+
+# pythonキャッシュファイル
+__pycache__
+
+flagged
+
+venv/*
+
+tmp/*

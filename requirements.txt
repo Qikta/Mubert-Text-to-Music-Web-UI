@@ -1,0 +1,8 @@
+httpx
+sentence-transformers
+numpy
+datetime
+requests
+gradio
+python-dotenv
+Cmake
