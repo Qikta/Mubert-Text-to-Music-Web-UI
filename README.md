@@ -3,7 +3,7 @@ local demonstrating prompt-based music generation via Mubert API
 
 ## Installation
 
-1. Install Python3, checking "Add Python to PATH"
+1. Install Python3.10, checking "Add Python to PATH"
 
 2. Install git.
 
