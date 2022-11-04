@@ -84,10 +84,9 @@ def generate_track_by_prompt(email, prompt, duration, loop):
     print("loop: ", loop)
     _, tags = get_tags_for_prompts([prompt, ])[0]
     try:
-        return get_track_by_tags(tags, new_pat, duration, autoplay=True, loop=loop)
+        return get_track_by_tags(tags, new_pat, duration, autoplay=True, loop=loop), "Sccess", ",".join(tags)
     except Exception as e:
-        print(str(e))
-    print('\n')
+        return None, str(e), ""
  
  
 def save_file(url, tags):

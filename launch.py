@@ -98,6 +98,8 @@ def start_webui():
             ],
             outputs=[
                 gr.Audio(type="numpy", label="Generated Audio"),
+                gr.Text(label="Result message"),
+                gr.Text(label="Tags")
             ],
             title="Generate music from Mubert API🎵",
         )
