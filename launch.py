@@ -19,11 +19,11 @@ def run(command, desc=None, errdesc=None, custom_env=None):
     if result.returncode != 0:
 
         message = f"""{errdesc or 'Error running command'}.
-Command: {command}
-Error code: {result.returncode}
-stdout: {result.stdout.decode(encoding="utf8", errors="ignore") if len(result.stdout)>0 else '<empty>'}
-stderr: {result.stderr.decode(encoding="utf8", errors="ignore") if len(result.stderr)>0 else '<empty>'}
-"""
+            Command: {command}
+            Error code: {result.returncode}
+            stdout: {result.stdout.decode(encoding="utf8", errors="ignore") if len(result.stdout)>0 else '<empty>'}
+            stderr: {result.stderr.decode(encoding="utf8", errors="ignore") if len(result.stderr)>0 else '<empty>'}
+            """
         raise RuntimeError(message)
 
     return result.stdout.decode(encoding="utf8", errors="ignore")
@@ -80,10 +80,15 @@ def start_webui():
             fn=generate_track_by_prompt,
             inputs=[
                 gr.Textbox(
-                    label="prompt"
+                    label="email",
+                    placeholder="Email here for API Token..."
+                ),
+                gr.Textbox(
+                    label="prompt",
+                    placeholder="piano, rock, jazz"
                 ),
                 gr.Slider(
-                    minimum=1,
+                    minimum=0,
                     maximum=120,
                     step=10,
                     value=30,
@@ -92,11 +97,9 @@ def start_webui():
                 gr.Checkbox(),
             ],
             outputs=[
-#                gr.Image(label="Log-MelSpectrogram of Generated Audio (first 23 s)"),
                 gr.Audio(type="numpy", label="Generated Audio"),
             ],
-            title="Generate some music 🎵",
-            description="The generator used for this demo is updated *after* every epoch during training!",
+            title="Generate music from Mubert API🎵",
         )
     
     ui_render.launch()   

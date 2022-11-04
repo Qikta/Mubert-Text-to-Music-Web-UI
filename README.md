@@ -9,5 +9,5 @@ local demonstrating prompt-based music generation via Mubert API
 
 3. Download the Mubert-Text-to-Music-Web-UI repository, for example by running git clone https://github.com/Qikta/Mubert-Text-to-Music-Web-UI.git
 
-4. Run webui-user.bat from Windows Explorer as normal, non-administrator, user.
+4. Run `webui.bat`.
 

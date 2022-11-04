@@ -7,6 +7,7 @@ import datetime
 import requests
 import os
 from dotenv import load_dotenv
+from createToken import create_token
 load_dotenv()
  
 minilm = SentenceTransformer('all-MiniLM-L6-v2')
@@ -15,8 +16,6 @@ mubert_tags_string = 'run 60,piano,tribal,action,kids,neo-classic,run 130,pumped
 mubert_tags = np.array(mubert_tags_string.split(','))
 mubert_tags_embeddings = minilm.encode(mubert_tags)
 
-# 環境変数を参照
-pat = os.getenv('API_ACCESS_TOKEN')
  
 def get_track_by_tags(tags, pat, duration, maxit=20, autoplay=False, loop=False):
     if loop:
@@ -42,7 +41,6 @@ def get_track_by_tags(tags, pat, duration, maxit=20, autoplay=False, loop=False)
     for i in range(maxit):
         r = httpx.get(trackurl)
         if r.status_code == 200:
-            # display(Audio(trackurl, autoplay=autoplay))
             save_file(trackurl, tags)
             break
         time.sleep(1)
@@ -75,13 +73,18 @@ def get_tags_for_prompts(prompts, top_n=3, debug=False):
  
  
  
-def generate_track_by_prompt(prompt, duration, loop):
+def generate_track_by_prompt(email, prompt, duration, loop):
+    load_dotenv()
+    # 環境変数を参照
+    pat = os.getenv('API_ACCESS_TOKEN')
+    new_pat = create_token(email) if pat == None else pat
+
     print("prompt: ", prompt)
     print("duration: ", duration)
     print("loop: ", loop)
     _, tags = get_tags_for_prompts([prompt, ])[0]
     try:
-        return get_track_by_tags(tags, pat, duration, autoplay=True, loop=loop)
+        return get_track_by_tags(tags, new_pat, duration, autoplay=True, loop=loop)
     except Exception as e:
         print(str(e))
     print('\n')
