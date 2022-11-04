@@ -14,8 +14,8 @@ def create_token(email):
                     "method": "GetServiceAccess",
                     "params": {
                         "email": email,
-                        "license": "ttmmubertlicense#f0acYBenRcfeFpNT4wpYGaTQIyDI4mJGv5MfIhBFz97NXDwDNFHmMRsBSzmGsJwbTpP1A6i07AXcIeAHo5",
-                        "token": "4951f6428e83172a4f39de05d5b3ab10d58560b8",
+                        "license": os.getenv('API_LICENSE'),
+                        "token": os.getenv('API_TOKEN'),
                         "mode": "loop"
                     }
                 })

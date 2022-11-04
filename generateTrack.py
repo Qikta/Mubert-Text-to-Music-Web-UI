@@ -79,9 +79,6 @@ def generate_track_by_prompt(email, prompt, duration, loop):
     pat = os.getenv('API_ACCESS_TOKEN')
     new_pat = create_token(email) if pat == None else pat
 
-    print("prompt: ", prompt)
-    print("duration: ", duration)
-    print("loop: ", loop)
     _, tags = get_tags_for_prompts([prompt, ])[0]
     try:
         return get_track_by_tags(tags, new_pat, duration, autoplay=True, loop=loop), "Sccess", ",".join(tags)
